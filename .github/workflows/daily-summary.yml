@@ -2,7 +2,7 @@ name: Daily Commit Summary
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight
+    - cron: '0 18:30 * * *'  # Runs every day at midnight IST
   workflow_dispatch:
 
 jobs:
@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set timezone to IST
+      uses: szenius/set-timezone@v2.0
+      with:
+        timezoneLinux: 'Asia/Kolkata'
+        timezoneMacos: 'Asia/Kolkata'
+        timezoneWindows: 'India Standard Time'
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
